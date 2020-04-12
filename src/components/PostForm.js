@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
-const BlogPostForm = ({ onSubmit, initialValues }) => {
+const PostForm = ({ onSubmit, initialValues }) => {
 
   const [host, setHost] = useState(initialValues.host);
   const [body, setBody] = useState(initialValues.body);
@@ -63,7 +63,7 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
   );
 };
 
-BlogPostForm.defaultProps = {
+PostForm.defaultProps = {
   initialValues: {
     host: '',
     body: '',
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BlogPostForm;
+export default PostForm;

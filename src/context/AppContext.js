@@ -9,14 +9,27 @@ const blogReducer = (state, action) => {
   switch (action.type) {
 
     //
-    case 'get_blogposts': return action.payload;
-    case 'edit_blogpost': return state.map(blogPost => { return blogPost.id === action.payload.id ? action.payload : blogPost; });
-    case 'delete_blogpost': return state.filter(blogPost => blogPost.id !== action.payload);
+    case 'get_blogposts':
+      return action.payload;
 
     //
-    case 'get_posts': return action.payload;
-    case 'edit_post': return state.map(post => { return post.id === action.payload.id ? action.payload : post; });
-    case 'delete_post': return state.filter(post => post.id !== action.payload);
+    case 'edit_blogpost':
+
+      //
+      return state.map(blogPost => {
+
+        //
+        return blogPost.id === action.payload.id
+          ? action.payload
+          : blogPost;
+
+      });
+    
+    //
+    case 'delete_blogpost':
+
+      //
+      return state.filter(blogPost => blogPost.id !== action.payload);
 
     default:
 
@@ -26,7 +39,7 @@ const blogReducer = (state, action) => {
 
 };
 
-// Legacy GET
+//
 const getBlogPosts = dispatch => {
 
   //
@@ -50,7 +63,7 @@ const getBlogPosts = dispatch => {
   };
 };
 
-// Legacy ADD
+//
 const addBlogPost = dispatch => {
 
   //
@@ -77,7 +90,7 @@ const addBlogPost = dispatch => {
   };
 };
 
-// Legacy DELETE
+//
 const deleteBlogPost = dispatch => {
 
   //
@@ -103,7 +116,7 @@ const deleteBlogPost = dispatch => {
   };
 };
 
-// Legacy EDIT
+//
 const editBlogPost = dispatch => {
 
   //
@@ -137,7 +150,7 @@ const editBlogPost = dispatch => {
   };
 };
 
-// Posts GET
+// Posts
 const getPosts = dispatch => {
 
 //
@@ -161,7 +174,7 @@ return async () => {
 };
 };
 
-// Posts ADD
+// Posts
 const addPost = dispatch => {
 
 //
@@ -190,7 +203,7 @@ return async (host, body, closed, deleted, access, callback) => {
 };
 };
 
-// Posts DELETE
+// Posts
 const deletePost = dispatch => {
 
 //
@@ -216,7 +229,7 @@ return async id => {
 };
 };
 
-// Posts EDIT
+// Posts
 const editPost = dispatch => {
 
 //
@@ -250,7 +263,6 @@ return async (id,host,body,closed,deleted,access,callback) => {
 };
 };
 
-//
 export const { Context, Provider } = createDataContext(
   blogReducer, {
     addBlogPost,

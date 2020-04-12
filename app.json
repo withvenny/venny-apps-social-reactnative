@@ -24,6 +24,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "Blog by Venny",
+    "githubUrl": "https://github.com/withvenny/venny-app-blog"
   }
 }
