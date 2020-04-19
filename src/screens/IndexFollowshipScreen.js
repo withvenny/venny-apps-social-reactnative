@@ -7,20 +7,20 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import { Context } from '../context/PostContext';
+import { Context } from '../context/FollowshipContext';
 import { Feather } from '@expo/vector-icons';
 
 //
-const IndexPostScreen = ({ navigation }) => {
+const IndexFollowshipScreen = ({ navigation }) => {
   
   //
-  const { state, deletePost, getPosts } = useContext(Context);
+  const { state, deleteFollowship, getFollowships } = useContext(Context);
 
   useEffect(() => {
-    getPosts();
+    getFollowships();
 
     const listener = navigation.addListener('didFocus', () => {
-      getPosts();
+      getFollowships();
     });
 
     return () => {
@@ -35,17 +35,17 @@ const IndexPostScreen = ({ navigation }) => {
     <View>
       <FlatList
         data={state}
-        keyExtractor={post => post.id}
+        keyExtractor={followship => followship.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ShowPost', { id: item.id })}
+              onPress={() => navigation.navigate('ShowFollowship', { id: item.id })}
             >
               <View style={styles.row}>
                 <Text style={styles.body}>
-                  {item.body} - {item.id}
+                {item.id} = {item.sender} > {item.recipient} ({item.status})
                 </Text>
-                <TouchableOpacity onPress={() => deletePost(item.id)}>
+                <TouchableOpacity onPress={() => deleteFollowship(item.id)}>
                   <Feather style={styles.icon} name="trash" />
                 </TouchableOpacity>
               </View>
@@ -57,10 +57,10 @@ const IndexPostScreen = ({ navigation }) => {
   );
 };
 
-IndexPostScreen.navigationOptions = ({ navigation }) => {
+IndexFollowshipScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
-      <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CreateFollowship')}>
         <Feather name="plus" size={30} />
       </TouchableOpacity>
     )
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default IndexPostScreen;
+export default IndexFollowshipScreen;

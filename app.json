@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Blog by Venny",
-    "slug": "blog",
+    "name": "NTRL",
+    "slug": "ntrl",
     "platforms": [
       "ios",
       "android",
@@ -24,7 +24,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Blog by Venny",
-    "githubUrl": "https://github.com/withvenny/venny-app-blog"
+    "description": "The NTRL Co. present NTRL, the collaboration hub for music.",
+    "githubUrl": "https://github.com/withvenny/venny-app-ntrl"
   }
 }

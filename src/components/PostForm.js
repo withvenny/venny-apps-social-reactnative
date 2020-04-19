@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
 const PostForm = ({ onSubmit, initialValues }) => {
 
-  const [host, setHost] = useState(initialValues.host);
-  const [body, setBody] = useState(initialValues.body);
-  const [closed, setClosed] = useState(initialValues.closed);
-  const [deleted, setDeleted] = useState(initialValues.deleted);
-  const [access, setAccess] = useState(initialValues.access);
+  const [host, setHost] = useState(initialValues.posts.host);
+  const [body, setBody] = useState(initialValues.posts.body);
+  const [closed, setClosed] = useState(initialValues.posts.closed);
+  const [deleted, setDeleted] = useState(initialValues.posts.deleted);
+  const [access, setAccess] = useState(initialValues.posts.access);
 
   return (
     <View>
@@ -15,7 +15,7 @@ const PostForm = ({ onSubmit, initialValues }) => {
       <Text style={styles.label}>Enter Body:</Text>
       <TextInput
         style={styles.input}
-        value={body}
+        value={posts.body}
         placeholder={'Enter the index to scroll'}
         onChangeText={text => setBody(text)}
       />
@@ -23,7 +23,7 @@ const PostForm = ({ onSubmit, initialValues }) => {
       <Text style={styles.label}>Enter Host:</Text>
       <TextInput
         style={styles.input}
-        value={host}
+        value={posts.host}
         placeholder={'Enter the index to scroll'}
         onChangeText={text => setHost(text)}
       />
@@ -33,7 +33,7 @@ const PostForm = ({ onSubmit, initialValues }) => {
         numericvalue
         keyboardType={'numeric'}
         style={styles.input}
-        value={String(closed)}
+        value={String(posts.closed)}
         placeholder={'Enter a number between 0-9'}
         onChangeText={text => setClosed(text)}
       />
@@ -43,7 +43,7 @@ const PostForm = ({ onSubmit, initialValues }) => {
         numericvalue
         keyboardType={'numeric'}
         style={styles.input}
-        value={String(deleted)}
+        value={String(posts.deleted)}
         placeholder={'Enter a number between 0-9'}
         onChangeText={text => setDeleted(text)}
       />
@@ -53,23 +53,25 @@ const PostForm = ({ onSubmit, initialValues }) => {
         numericvalue
         keyboardType={'numeric'}
         style={styles.input}
-        value={String(access)}
+        value={String(posts.access)}
         placeholder={'Enter a number between 0-9'}
         onChangeText={text => setAccess(text)}
       />
 
-      <Button title="Save Blog Post" onPress={() => onSubmit(host, body,closed,deleted,access)} />
+      <Button title="Save Blog Post" onPress={() => onSubmit(host,body,closed,deleted,access)} />
     </View>
   );
 };
 
 PostForm.defaultProps = {
   initialValues: {
-    host: '',
-    body: '',
-    closed: '',
-    deleted: '',
-    access: ''
+    posts: {
+      host: '',
+      body: '',
+      closed: '',
+      deleted: '',
+      access: ''
+    }
   }
 };
 

@@ -7,20 +7,20 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import { Context } from '../context/PostContext';
+import { Context as ProfileProvider } from '../context/ProfileContext';
 import { Feather } from '@expo/vector-icons';
 
 //
-const IndexPostScreen = ({ navigation }) => {
+const IndexProfileScreen = ({ navigation }) => {
   
   //
-  const { state, deletePost, getPosts } = useContext(Context);
+  const { state, deleteProfile, getProfiles } = useContext(ProfileProvider);
 
   useEffect(() => {
-    getPosts();
+    getProfiles();
 
     const listener = navigation.addListener('didFocus', () => {
-      getPosts();
+      getProfiles();
     });
 
     return () => {
@@ -29,23 +29,23 @@ const IndexPostScreen = ({ navigation }) => {
   }, []);
 
   //
-  console.log("This is POST STATE: " + state);
+  console.log("This is PROFILE STATE: " + state);
 
   return (
     <View>
       <FlatList
         data={state}
-        keyExtractor={post => post.id}
+        keyExtractor={followship => followship.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ShowPost', { id: item.id })}
+              onPress={() => navigation.navigate('ShowProfile', { id: item.id })}
             >
               <View style={styles.row}>
                 <Text style={styles.body}>
-                  {item.body} - {item.id}
+                {item.id}: {item.bio}{item.headline}{item.access}{item.status}
                 </Text>
-                <TouchableOpacity onPress={() => deletePost(item.id)}>
+                <TouchableOpacity onPress={() => deleteProfile(item.id)}>
                   <Feather style={styles.icon} name="trash" />
                 </TouchableOpacity>
               </View>
@@ -57,10 +57,10 @@ const IndexPostScreen = ({ navigation }) => {
   );
 };
 
-IndexPostScreen.navigationOptions = ({ navigation }) => {
+IndexProfileScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
-      <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CreateProfile')}>
         <Feather name="plus" size={30} />
       </TouchableOpacity>
     )
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default IndexPostScreen;
+export default IndexProfileScreen;

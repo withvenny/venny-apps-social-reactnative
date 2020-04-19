@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { Context } from '../context/BlogContext';
+import { Context as PostProvider } from '../context/PostContext';
 import PostForm from '../components/PostForm';
 
 const EditPostScreen = ({ navigation }) => {
   const id = navigation.getParam('id');
-  const { state, editPost } = useContext(Context);
+  const { state, editPost } = useContext(PostProvider);
 
   const post = state.find(post => post.id === id);
 
@@ -18,7 +18,7 @@ const EditPostScreen = ({ navigation }) => {
         deleted: post.deleted,
         access: post.access
       }}
-      onSubmit={(host, body,closed,deleted,access) => {
+      onSubmit={(host,body,closed,deleted,access) => {
         editPost(
           id,
           host,

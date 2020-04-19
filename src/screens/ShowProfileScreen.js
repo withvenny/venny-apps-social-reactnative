@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Context as PostProvider } from '../context/PostContext';
+import { Context as ProfileProvider } from '../context/ProfileContext';
 import { EvilIcons } from '@expo/vector-icons';
 
 //
-const ShowPostScreen = ({ navigation }) => {
+const ShowProfileScreen = ({ navigation }) => {
 
   //
-  const { state } = useContext(PostProvider);
+  const { state } = useContext(ProfileProvider);
   
   //console.log(useContext(Context));
 
@@ -19,22 +19,21 @@ const ShowPostScreen = ({ navigation }) => {
   return (
     <View>
       <Text>ID: {post.id}</Text>
-      <Text>Body: {post.body}</Text>
-      <Text>Closed: {post.closed}</Text>
-      <Text>Deleted: {post.deleted}</Text>
+      <Text>Bio: {post.bio}</Text>
+      <Text>Headline: {post.headline}</Text>
+      <Text>Status: {post.status}</Text>
       <Text>Access: {post.access}</Text>
-      <Text>Host: {post.host}</Text>
       <Text>Profile: {post.profile}</Text>
     </View>
   );
 };
 
-ShowPostScreen.navigationOptions = ({ navigation }) => {
+ShowProfileScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('EditPost', { id: navigation.getParam('id') })
+          navigation.navigate('EditProfile', { id: navigation.getParam('id') })
         }
       >
         <EvilIcons name="pencil" size={35} />
@@ -45,4 +44,4 @@ ShowPostScreen.navigationOptions = ({ navigation }) => {
 
 const styles = StyleSheet.create({});
 
-export default ShowPostScreen;
+export default ShowProfileScreen;
