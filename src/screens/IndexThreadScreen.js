@@ -4,8 +4,8 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { Context } from '../context/ThreadContext';
 import { Feather } from '@expo/vector-icons';
@@ -31,6 +31,12 @@ const IndexThreadScreen = ({ navigation }) => {
   //
   console.log("This is thread state: " + state);
 
+  _alert = (item)=>{
+
+    Alert.alert(item);
+  
+  }
+
   return (
     <View>
       <FlatList
@@ -43,7 +49,10 @@ const IndexThreadScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <Text style={styles.body}>
-                {item.id},{item.participant} > {item.preview} ({item.profile})
+                {item.id},{item.preview},{item.title},{item.participants.administrator},{item.profile},{item.participants.contributors.map(x=>x)}
+                { item.participants.contributors.map((item, key)=>(
+                  <Text key={key} style={styles.littleStyle} onPress={ _alert.bind(this, item) }> { item }, </Text>)
+                  )}
                 </Text>
                 <TouchableOpacity onPress={() => deleteThread(item.id)}>
                   <Feather style={styles.icon} name="trash" />
@@ -81,6 +90,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 24
+  },
+  littleStyle: {
+    fontSize: 30,
+    textDecorationLine: 'underline',
   }
 });
 

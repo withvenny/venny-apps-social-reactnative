@@ -30,13 +30,14 @@ const getThreads = dispatch => {
       let path = '/threads?';
       path += '&token='+'tok_thentrlco';
       path += '&app='+'app_thentrlco';
-      path += '&thread='+'prf_adolphusnolan';
+      path += '&profile='+'prf_adolphusnolan';
       //path += '&id='+`${id}`;
       //path += '&title='+`${title}`;
       //path += '&participants='+`${participants}`;
       //path += '&preview='+`${preview}`;
-      //path += '&profile='+`${profile}`;
   
+      console.log("path: "+path);
+
       //
       const response = await api.get(path);
 
@@ -56,12 +57,11 @@ const addThread = dispatch => {
       let path = '/threads?';
       path += '&token='+'tkn_thentrlco';
       path += '&app='+'app_thentrlco';
-      path += '&thread='+'prf_adolphusnolan';
+      path += '&profile='+'prf_adolphusnolan';
       //path += '&id='+`${id}`;
       path += '&title='+`${title}`;
       path += '&participants='+`${participants}`;
       path += '&preview='+`${preview}`;
-      path += '&profile='+`${profile}`;
   
       //
       const response = await api.post(path);
@@ -84,12 +84,11 @@ const deleteThread = dispatch => {
       let path = '/threads?';
       path += '&token='+'tkn_thentrlco';
       path += '&app='+'app_thentrlco';
-      path += '&thread='+'prf_adolphusnolan';
+      path += '&profile='+'prf_adolphusnolan';
       path += '&id='+`${id}`;
       //path += '&title='+`${title}`;
       //path += '&participants='+`${participants}`;
       //path += '&preview='+`${preview}`;
-      //path += '&profile='+`${profile}`;
   
       const response = await api.delete(path);
   
@@ -109,12 +108,11 @@ const editThread = dispatch => {
       let path = '/threads?';
       path += '&token='+'tkn_thentrlco';
       path += '&app='+'app_thentrlco';
-      path += '&thread='+'prf_adolphusnolan';
+      path += '&profile='+'prf_adolphusnolan';
       path += '&id='+`${id}`;
       path += '&title='+`${title}`;
       path += '&participants='+`${participants}`;
       path += '&preview='+`${preview}`;
-      path += '&profile='+`${profile}`;
   
       //
       const response = await api.put(path);

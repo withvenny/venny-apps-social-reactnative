@@ -7,20 +7,20 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import { Context } from '../context/ThreadContext';
+import { Context } from '../context/FollowshipContext';
 import { Feather } from '@expo/vector-icons';
 
 //
-const IndexThreadScreen = ({ navigation }) => {
+const IndexFollowshipScreen = ({ navigation }) => {
   
   //
-  const { state, deleteThread, getThreads } = useContext(Context);
+  const { state, deleteFollowship, getFollowships } = useContext(Context);
 
   useEffect(() => {
-    getThreads();
+    getFollowships();
 
     const listener = navigation.addListener('didFocus', () => {
-      getThreads();
+      getFollowships();
     });
 
     return () => {
@@ -29,23 +29,23 @@ const IndexThreadScreen = ({ navigation }) => {
   }, []);
 
   //
-  console.log("This is thread state: " + state);
+  console.log("This is followship state: " + state);
 
   return (
     <View>
       <FlatList
         data={state}
-        keyExtractor={thread => thread.id}
+        keyExtractor={followship => followship.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ShowThread', { id: item.id })}
+              onPress={() => navigation.navigate('ShowFollowship', { id: item.id })}
             >
               <View style={styles.row}>
                 <Text style={styles.body}>
-                {item.id},{item.participant} > {item.preview} ({item.profile})
+                {item.id},{item.sender},{item.recipient},{item.status}
                 </Text>
-                <TouchableOpacity onPress={() => deleteThread(item.id)}>
+                <TouchableOpacity onPress={() => deleteFollowship(item.id)}>
                   <Feather style={styles.icon} name="trash" />
                 </TouchableOpacity>
               </View>
@@ -57,10 +57,10 @@ const IndexThreadScreen = ({ navigation }) => {
   );
 };
 
-IndexThreadScreen.navigationOptions = ({ navigation }) => {
+IndexFollowshipScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
-      <TouchableOpacity onPress={() => navigation.navigate('CreateThread')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CreateFollowship')}>
         <Feather name="plus" size={30} />
       </TouchableOpacity>
     )
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default IndexThreadScreen;
+export default IndexFollowshipScreen;

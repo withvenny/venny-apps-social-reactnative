@@ -3,11 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as ThreadProvider } from '../context/ThreadContext';
 import { EvilIcons } from '@expo/vector-icons';
 
+//
 const ShowThreadScreen = ({ navigation }) => {
+
+  //
   const { state } = useContext(ThreadProvider);
+  
+  //console.log(useContext(Context));
 
-  //console.log(state);
-
+  //
   const thread = state.find(
     thread => thread.id === navigation.getParam('id')
   );
@@ -15,10 +19,11 @@ const ShowThreadScreen = ({ navigation }) => {
   return (
     <View>
       <Text>ID: {thread.id}</Text>
-      <Text>title: {thread.title}</Text>
-      <Text>participants: {thread.participants}</Text>
-      <Text>preview: {thread.preview}</Text>
-      <Text>profile: {thread.profile}</Text>
+      <Text>Title: {thread.title}</Text>
+      <Text>Preview: {thread.preview}</Text>
+      <Text>Participants: {thread.participants.administrator}</Text>
+      <Text>Participants: {thread.participants.contributors.toString()}</Text>
+      <Text>Profile: {thread.profile}</Text>
     </View>
   );
 };
