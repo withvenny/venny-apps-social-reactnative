@@ -1,11 +1,8 @@
 import React from "react";
-import { View,Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { View,Text, TextInput, AsyncStorage,Button, StyleSheet, TouchableOpacity } from "react-native";
 
 //
 const HomeScreen = ({ navigation }) => {
-
-  //
-  //console.log(navigation);
 
   return (
     
@@ -23,6 +20,11 @@ const HomeScreen = ({ navigation }) => {
             onPress={()=> navigation.navigate('IndexProfile')}
             title="Go to Profiles"
         />
+        <Button
+            onPress={()=> navigation.navigate('Account')}
+            title="Go to Account"
+        />
+
       </View>
 
   );

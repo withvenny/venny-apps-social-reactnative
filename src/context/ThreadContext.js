@@ -36,8 +36,9 @@ const getThreads = dispatch => {
       //path += '&participants='+`${participants}`;
       //path += '&preview='+`${preview}`;
   
+      //
       console.log("path: "+path);
-
+      
       //
       const response = await api.get(path);
 
@@ -60,8 +61,11 @@ const addThread = dispatch => {
       path += '&profile='+'prf_adolphusnolan';
       //path += '&id='+`${id}`;
       path += '&title='+`${title}`;
-      path += '&participants='+`${participants}`;
+      path += '&participants='+`${JSON.stringify(participants)}`;
       path += '&preview='+`${preview}`;
+
+      //
+      console.log("path: "+path);
   
       //
       const response = await api.post(path);
@@ -89,6 +93,9 @@ const deleteThread = dispatch => {
       //path += '&title='+`${title}`;
       //path += '&participants='+`${participants}`;
       //path += '&preview='+`${preview}`;
+
+      //
+      console.log("path: "+path);
   
       const response = await api.delete(path);
   
@@ -113,6 +120,9 @@ const editThread = dispatch => {
       path += '&title='+`${title}`;
       path += '&participants='+`${participants}`;
       path += '&preview='+`${preview}`;
+
+      //
+      console.log("path: "+path);
   
       //
       const response = await api.put(path);

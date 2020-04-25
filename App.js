@@ -9,6 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 // ONBOARDING
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+import AccountScreen from './src/screens/AccountScreen';
 
 // LEGACY
 import IndexScreen from './src/screens/IndexScreen';
@@ -49,10 +50,14 @@ import SearchScreen from './src/screens/SearchScreen';
 import ResultsShowScreen from './src/screens/ResultsShowScreen';
 
 //
+import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as PostProvider } from './src/context/PostContext';
 import { Provider as FollowshipProvider } from './src/context/FollowshipContext';
 import { Provider as ProfileProvider } from './src/context/ProfileContext';
 import { Provider as ThreadProvider } from './src/context/ThreadContext';
+import { setNavigator } from 'src/navigationRef';
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
+
 
 //
 const navigator = createStackNavigator({
@@ -99,7 +104,8 @@ const onboardingStack = createStackNavigator({
 });
 
 const homeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: HomeScreen,
+  Account: AccountScreen
 });
 
 const discoverStack = createStackNavigator({
@@ -146,6 +152,7 @@ const profileStack = createStackNavigator({
 
 //
 const switchNavigator = createSwitchNavigator({
+  ResolveAuth: ResolveAuthScreen,
   onboardingFlow: createStackNavigator({
     onboardingStack,
   }),
@@ -164,6 +171,11 @@ projectStack.navigationOptions = { title: 'Project', tabBarIcon: <FontAwesome na
 inboxStack.navigationOptions = { title: 'Inbox', tabBarIcon: <FontAwesome name="comments" size={20} /> };
 profileStack.navigationOptions = { title: 'Me', tabBarIcon: <FontAwesome name="users" size={20} /> };
 
+SignUpScreen.navigationOptions = {
+  title: 'Welcome',
+  tabBarIcon: <FontAwesome name="th-list" size={20} />
+};
+
 const App = createAppContainer(switchNavigator);
 
 export default () => {
@@ -172,7 +184,9 @@ export default () => {
       <PostProvider>
         <ProfileProvider>
           <ThreadProvider>
-            <App />
+            <AuthProvider>
+              <App ref={ navigator => { setNavigator(navigator); } }/>
+            </AuthProvider>
           </ThreadProvider>
         </ProfileProvider>
       </PostProvider>

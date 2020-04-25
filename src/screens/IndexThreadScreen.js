@@ -31,11 +31,22 @@ const IndexThreadScreen = ({ navigation }) => {
   //
   console.log("This is thread state: " + state);
 
-  _alert = (item)=>{
+  var subject1=['item1','item2'];
 
-    Alert.alert(item);
-  
-  }
+  var subject=['item3','item4','item5'];
+
+  subject1.push(...subject);
+
+  console.log(subject1);
+
+  var alerts = { 
+    administrators: ['prf_1','prf_2'],
+    blocked: ['prf_5','prf_6'],
+}
+
+alerts = Object.assign({contributors: ['prf_1','prf_2','prf_3','prf_4']}, alerts)
+
+console.log(alerts);
 
   return (
     <View>
@@ -49,10 +60,14 @@ const IndexThreadScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <Text style={styles.body}>
-                {item.id},{item.preview},{item.title},{item.participants.administrator},{item.profile},{item.participants.contributors.map(x=>x)}
-                { item.participants.contributors.map((item, key)=>(
-                  <Text key={key} style={styles.littleStyle} onPress={ _alert.bind(this, item) }> { item }, </Text>)
-                  )}
+                ID: {item.id},
+                Preview: {item.preview},
+                Title: {item.title},
+                Adminstrators::toString: {item.participants.administrators.toString()},
+                Adminstrators: {JSON.stringify(item.participants.administrators)},
+                Contributors::toString: {item.participants.contributors.toString()},
+                Contributors: {JSON.stringify(item.participants.contributors)},
+                Profile: {item.profile}
                 </Text>
                 <TouchableOpacity onPress={() => deleteThread(item.id)}>
                   <Feather style={styles.icon} name="trash" />
