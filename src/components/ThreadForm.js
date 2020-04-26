@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 const ThreadForm = ({ onSubmit, initialValues }) => {
 
   const [title, setTitle] = useState(initialValues.title);
-  const [participants, setParticipants] = useState(initialValues.participants);
+  const [administrators, setAdministrators] = useState(initialValues.administrators);
+  const [contributors, setContributors] = useState(initialValues.contributors);
   const [preview, setPreview] = useState(initialValues.preview);
   const [profile, setProfile] = useState(initialValues.profile);
 
@@ -20,13 +21,22 @@ const ThreadForm = ({ onSubmit, initialValues }) => {
         onChangeText={text => setTitle(text)}
       />
 
-      <Text style={styles.label}>Enter participants:</Text>
+      <Text style={styles.label}>Enter administrators:</Text>
       <TextInput
         style={styles.input}
-        value={participants}
+        value={administrators}
         autoCapitalize='none'
         placeholder={'Enter the index to scroll'}
-        onChangeText={text => setParticipants(text)}
+        onChangeText={text => setAdministrators(text)}
+      />
+
+  <Text style={styles.label}>Enter contributors:</Text>
+      <TextInput
+        style={styles.input}
+        value={contributors}
+        autoCapitalize='none'
+        placeholder={'Enter the index to scroll'}
+        onChangeText={text => setContributors(text)}
       />
 
       <Text style={styles.label}>Enter preview:</Text>
@@ -47,7 +57,7 @@ const ThreadForm = ({ onSubmit, initialValues }) => {
         onChangeText={text => setProfile(text)}
       />
 
-      <Button title="Save Thread" onPress={() => onSubmit(title,participants,preview,profile)} />
+      <Button title="Save Thread" onPress={() => onSubmit(title,administrators,contributors,preview)} />
     </View>
   );
 };

@@ -28,26 +28,6 @@ const IndexThreadScreen = ({ navigation }) => {
     };
   }, []);
 
-  //
-  console.log("This is thread state: " + state);
-
-  var subject1=['item1','item2'];
-
-  var subject=['item3','item4','item5'];
-
-  subject1.push(...subject);
-
-  console.log(subject1);
-
-  var alerts = { 
-    administrators: ['prf_1','prf_2'],
-    blocked: ['prf_5','prf_6'],
-}
-
-alerts = Object.assign({contributors: ['prf_1','prf_2','prf_3','prf_4']}, alerts)
-
-console.log(alerts);
-
   return (
     <View>
       <FlatList

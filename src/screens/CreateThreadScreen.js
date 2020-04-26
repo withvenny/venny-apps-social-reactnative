@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { Context } from '../context/ThreadContext';
-import ThreadForm from '../components/ThreadForm';
+import { Context } from 'src/context/ThreadContext';
+import ThreadForm from 'src/components/ThreadForm';
 
 //
 const CreateThreadScreen = ({ navigation }) => {

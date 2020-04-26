@@ -1,5 +1,5 @@
-import createDataContext from './createDataContext';
-import api from '../api';
+import createDataContext from 'src/context/createDataContext';
+import api from 'src/api';
 
 //
 const threadReducer = (state, action) => {
@@ -52,8 +52,32 @@ const getThreads = dispatch => {
 const addThread = dispatch => {
   
   //
-  return async (title,participants,profile,preview,callback) => {
+  return async (title,administrators,contributors,preview,callback) => {
+
+    var administrators = { 
+      administrators: [
+        'prf_adolphusnolan',
+        'prf_dominickclayton',
+        'prf_anthonybuchanan',
+      ]
+    }
+
+  var contributors = {
+    contributors: [
+      'prf_adolphusnolan',
+      'prf_dominickclayton',
+      'prf_anthonybuchanan',
+      'prf_crystalarmstrong',
+      'prf_kaywht',
+      'prf_ghostboyslim',
+    ]
+  }
   
+  participants = Object.assign(contributors, administrators)
+  
+  //Result:
+  console.log(participants);
+
       //
       let path = '/threads?';
       path += '&token='+'tkn_thentrlco';
@@ -61,7 +85,7 @@ const addThread = dispatch => {
       path += '&profile='+'prf_adolphusnolan';
       //path += '&id='+`${id}`;
       path += '&title='+`${title}`;
-      path += '&participants='+`${JSON.stringify(participants)}`;
+      path += '&participants='+ JSON.stringify(participants);
       path += '&preview='+`${preview}`;
 
       //
@@ -109,7 +133,7 @@ const deleteThread = dispatch => {
 const editThread = dispatch => {
   
   //
-  return async (id,title,participants,profile,preview,callback) => {
+  return async (id,title,administrators,contributors,profile,preview,callback) => {
   
       //
       let path = '/threads?';
@@ -131,7 +155,7 @@ const editThread = dispatch => {
   
       dispatch({
       type: 'edit_thread',
-      payload: { id, title, participants, profile, preview }
+      payload: { id, title, administrators, contributors, profile, preview }
       });
       if (callback) {
       callback();

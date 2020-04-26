@@ -1,17 +1,16 @@
 import React from "react";
-import { View,Text, TextInput, AsyncStorage,Button, StyleSheet, TouchableOpacity } from "react-native";
+import { View,Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 
 //
 const HomeScreen = ({ navigation }) => {
 
-  const token = AsyncStorage.getItem('token');
-
-  console.log("TOKEN: "+ token);
+  //
+  //console.log(navigation);
 
   return (
     
       <View>
-        <Text style={styles.text}>Hi there...</Text>
+        <Text style={styles.text}>Welcome to Venny I/O Apps</Text>
         <Button
           onPress={()=> navigation.navigate('IndexPost')}
           title="Go to Posts"
@@ -26,9 +25,8 @@ const HomeScreen = ({ navigation }) => {
         />
         <Button
             onPress={()=> navigation.navigate('Account')}
-            title="Go to Account"
+            title="Go to Acount"
         />
-
       </View>
 
   );
