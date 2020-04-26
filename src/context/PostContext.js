@@ -27,6 +27,7 @@ const getPosts = dispatch => {
 return async () => {
 
     //
+    /*
     let path = '/posts?';
     path += '&token='+'tkn_thentrlco';
     path += '&app='+'app_thentrlco';
@@ -36,9 +37,19 @@ return async () => {
     //path += '&closed='+`${closed}`;
     //path += '&deleted='+`${deleted}`;
     //path += '&access='+`${access}`;
+    */
 
     //
-    const response = await api.get(path);
+    //const response = await api.get(path);
+    const response = await api.get('/posts?', {
+      params: JSON.stringify({
+        token:'tkn_thentrlco',
+        app:'app_thentrlco',
+        profile:'per_adolphusnolan',
+      })
+    });
+
+    console.log(response);
 
     dispatch({ type: 'get_posts', payload: response.data.data });
 };

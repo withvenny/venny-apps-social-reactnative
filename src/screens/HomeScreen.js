@@ -4,6 +4,10 @@ import { View,Text, TextInput, AsyncStorage,Button, StyleSheet, TouchableOpacity
 //
 const HomeScreen = ({ navigation }) => {
 
+  const token = AsyncStorage.getItem('token');
+
+  console.log("TOKEN: "+ token);
+
   return (
     
       <View>

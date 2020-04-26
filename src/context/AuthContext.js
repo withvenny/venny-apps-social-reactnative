@@ -39,6 +39,7 @@ const signup = dispatch => async ({ email, password, name }) => {
     let path = '/signup';
     path += '?token='+'tkn_thentrlco';
     path += '&app='+'app_thentrlco';
+    path += '&profile='+'app_thentrlco';
     path += '&email='+`${email}`;
     path += '&authorize='+`${password}`;
     path += '&name_first='+`${name}`;
@@ -82,7 +83,7 @@ const signin = dispatch => async ({ email, password }) => {
   try {
     const response = await api.post(path);
     await AsyncStorage.setItem('token', response.data.data.profile[0].id);
-    dispatch({ type: 'signin', payload: response.data.data });
+    dispatch({ type: 'signin', payload: response.data.data.profile[0].id });
     navigate('experienceFlow');
   } catch (err) {
     dispatch({

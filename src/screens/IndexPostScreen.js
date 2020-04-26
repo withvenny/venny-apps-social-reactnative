@@ -19,6 +19,8 @@ const IndexPostScreen = ({ navigation }) => {
   useEffect(() => {
     getPosts();
 
+    //console.log("NOOOOOO! STATE OF MIND: "+state[0]);
+
     const listener = navigation.addListener('didFocus', () => {
       getPosts();
     });
@@ -29,7 +31,7 @@ const IndexPostScreen = ({ navigation }) => {
   }, []);
 
   //
-  console.log("This is POST STATE: " + state);
+  //console.log("This is POST STATE: " + state);
 
   return (
     <View>
