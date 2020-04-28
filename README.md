@@ -1,1 +1,1 @@
-# venny-app-blog
+# venny-apps-reactnative
