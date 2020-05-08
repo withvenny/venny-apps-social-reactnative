@@ -73,7 +73,7 @@ const addThread = dispatch => {
     ]
   }
   
-  participants = Object.assign(contributors, administrators)
+  participants = Object.assign(contributors, administrators);
   
   //Result:
   console.log(participants);
