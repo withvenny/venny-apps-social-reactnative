@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <Button
             onPress={()=> navigation.navigate('Account')}
-            title="Go to Acount"
+            title="Go to Account"
         />
       </View>
 
